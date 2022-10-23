@@ -9,7 +9,7 @@ RUN ln -f /usr/bin/cluster-samples-operator /usr/bin/cluster-samples-operator-wa
 COPY manifests/image-references manifests/0* /manifests/
 COPY vendor/github.com/openshift/api/samples/v1/0000_10_samplesconfig.crd.yaml /manifests/
 COPY assets/operator/okd-x86_64 /opt/openshift/operator/x86_64
-RUN useradd cluster-samples-operator
+RUN useradd cluster-samples-operator && ln -s /opt/openshift/operator/x86_64 /opt/openshift/operator/aarch64
 USER cluster-samples-operator
 ENTRYPOINT []
 CMD ["/usr/bin/cluster-samples-operator"]
